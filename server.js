@@ -5,6 +5,7 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 
 var app = express();
+var port = process.env.PORT || 8080;
 
 var staticPath = path.join(__dirname, '/public');
 app.use(express.static(staticPath));
@@ -21,6 +22,6 @@ app.get('/qrread', function (req, res) {
   
 })
 
-app.listen(3000, function() {
-  console.log('listening');
+app.listen(port, function() {
+  console.log('listening on:'+port);
 });
