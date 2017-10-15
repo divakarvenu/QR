@@ -79,7 +79,7 @@ function handleFormSubmit(event) {  // handles form submit withtout any jquery
         document.getElementById('thankyou_message').style.display = 'block';       
         var qr = new QRious({
           element: document.getElementById('qr'),
-          value: window.location.href+'qrread?id'+JSON.parse(response.data).id[0]
+          value: window.location.href+'qrread?id='+JSON.parse(response.data).id[0]
         });
       //  window.location = window.location.href+'qrread?id=_l8v4ewxua';
         return;
