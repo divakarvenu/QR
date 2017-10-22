@@ -15,7 +15,6 @@ body, html{
  background-repeat: no-repeat;
  background:url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg);
  font-family: 'Oxygen', sans-serif;
-    background-size: cover;
 }
 
 .main{
@@ -124,6 +123,7 @@ text-align: center;
 
 /* Profile sidebar */
 .profile-sidebar {
+  margin: 4%;
   padding: 20px 0 10px 0;
   background: #fff;
   box-shadow:1px 1px 10px rgba(0,0,0,0.3)
@@ -242,4 +242,8 @@ text-align: center;
   display: block;
   margin: 0 auto;
   text-align: center;
+}
+#qr{
+  min-width: 300px;
+  min-height: 300px;
 }
