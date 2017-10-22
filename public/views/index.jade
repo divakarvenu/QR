@@ -1,0 +1,65 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='QR Code Provider')
+    title QR Code Provider
+  body
+    // START HERE
+    link(rel='stylesheet', href='https://unpkg.com/purecss@1.0.0/build/pure-min.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
+    // Style The Contact Form How Ever You Prefer
+    link(rel='stylesheet', href='style.css')
+    .container
+      .row.main
+        .main-login.main-center
+          #thankyou_message(style='display:none;')
+            canvas#qr
+          form#gform(method='POST', action='https://script.google.com/macros/s/AKfycbzF93CtBZE-RZgf7tW6EAnMhhw2pDfvkLkU5rLe098NuM23lA/exec')
+            .form-group
+              label.cols-sm-2.control-label(for='name') Name
+              .cols-sm-10
+                .input-group
+                  span.input-group-addon
+                    i.fa.fa-user.fa(aria-hidden='true')
+                  input#name.form-control(type='text', name='name', placeholder='Enter your Name')
+            .form-group
+              label.cols-sm-2.control-label(for='email') Farm Location
+              .cols-sm-10
+                .input-group
+                  span.input-group-addon
+                    i.fa.fa-location-arrow(aria-hidden='true')
+                  input#farmlocation.form-control(type='text', name='farmlocation', placeholder='Farm Location',disabled)
+            .form-group
+              label.cols-sm-2.control-label(for='Harvest Date') Harvest Date
+              .cols-sm-10
+                .input-group
+                  span.input-group-addon
+                    i.fa.fa-leaf(aria-hidden='true')
+                  input#harvestdate.form-control(type='date', name='harvestdate', placeholder='Harvest date')
+            .form-group
+              label.cols-sm-2.control-label(for='password') Last Soil Inspection Date
+              .cols-sm-10
+                .input-group
+                  span.input-group-addon
+                    i.fa.fa-tint(aria-hidden='true')
+                  input#lastsoliinspectiondate.form-control(type='date', name='lastsoliinspectiondate', placeholder='Last soli insepction date')
+            .form-group
+              label.cols-sm-2.control-label(for='confirm') Facebook ID
+              .cols-sm-10
+                .input-group
+                  span.input-group-addon
+                    i.fa.fa-facebook(aria-hidden='true')
+                  input#fbid.form-control(type='text', name='fbid', placeholder='Facebook ID')
+            .form-group
+              button#button.btn.btn-primary.btn-lg.btn-block.login-button(type='submit') Register
+    
+    // Submit the Form to Google Using "AJAX"
+    script(src='qrious.min.js')
+    script(data-cfasync='false', type='text/javascript', src='form-submission-handler.js')
+    //
+      <script data-cfasync="false" type="text/javascript"
+      src="/form-submission-handler.js"></script>
+    // END

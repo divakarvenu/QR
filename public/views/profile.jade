@@ -1,0 +1,38 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='QR Code Provider')
+    title QR Code Provider
+  body
+    // START HERE
+    link(rel='stylesheet', href='https://unpkg.com/purecss@1.0.0/build/pure-min.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
+    // Style The Contact Form How Ever You Prefer
+    link(rel='stylesheet', href='style.css')
+    .container
+  .row.profile
+    .col-md-3
+      .profile-sidebar
+        // SIDEBAR USERPIC
+        .profile-userpic
+          img.img-responsive(src='https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg', alt='')
+        .profile-usertitle
+          .profile-usertitle-name  #{name}          
+    .col-md-9
+      .col-sm-6
+        .profile-content
+              h3.maintitle Harvest Date
+              h3.subtitle  #{harvestdate}       
+      .col-sm-6
+        .profile-content
+             h3.maintitle Last Soil Inspection Date
+             h3.subtitle  #{soilinspdate}
+      .col-sm-12
+        .profile-content 
+            img.img-map(src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyB1c_1IA9nIzOcqRQRtDBYS_1K-pCjG0PA&center=#{markers}&zoom=13&size=400x300&markers=#{markers}&sensor=false") 
+    
+    
+

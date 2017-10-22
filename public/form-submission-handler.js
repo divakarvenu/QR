@@ -1,18 +1,3 @@
-
-function validEmail(email) { // see:
-  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-  return re.test(email);
-}
-
-function validateHuman(honeypot) {
-  if (honeypot) {  //if hidden form filled up
-    console.log("Robot Detected!");
-    return true;
-  } else {
-    console.log("Welcome Human!");
-  }
-}
-
 // get all data in form and return object
 function getFormData() {
   var elements = document.getElementById("gform").elements; // all form elements
@@ -31,15 +16,7 @@ function getFormData() {
     data[k] = elements[k].value;
     var str = ""; // declare empty string outside of loop to allow
                   // it to be appended to for each item in the loop
-    if(elements[k].type === "checkbox"){ // special case for Edge's html collection
-      str = str + elements[k].checked + ", "; // take the string and append 
-                                              // the current checked value to 
-                                              // the end of it, along with 
-                                              // a comma and a space
-      data[k] = str.slice(0, -2); // remove the last comma and space 
-                                  // from the  string to make the output 
-                                  // prettier in the spreadsheet
-    }else if(elements[k].length){
+    if(elements[k].length){
       for(var i = 0; i < elements[k].length; i++){
         if(elements[k].item(i).checked){
           str = str + elements[k].item(i).value + ", "; // same as above
@@ -49,26 +26,15 @@ function getFormData() {
     }
   });
   data.id='_' + Math.random().toString(36).substr(2, 9);
-  return data;
+  return data;   
 }
 
-function handleFormSubmit(event) {  // handles form submit withtout any jquery
-  event.preventDefault();           // we are submitting via xhr below
-  var data = getFormData();         // get the values submitted in the form
-  
 
-  /* OPTION: Remove this comment to enable SPAM prevention, see README.md
-  if (validateHuman(data.honeypot)) {  //if form is filled, form will not be submitted
-    return false;
-  }
-  */
-  
 
-  if( !validEmail(data.email) ) {   // if email is not valid show error
-    document.getElementById('email-invalid').style.display = 'block';
-    return false;
-  } else {
-    var url = event.target.action;  //
+function handleFormSubmit(event) {    // handles form submit withtout any jquery
+    event.preventDefault();           // we are submitting via xhr below
+    var data = getFormData();         // get the values submitted in the form 
+    var url = event.target.action;    //
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url);
     // xhr.withCredentials = true;
@@ -81,7 +47,7 @@ function handleFormSubmit(event) {  // handles form submit withtout any jquery
           element: document.getElementById('qr'),
           value: window.location.href+'qrread?id='+JSON.parse(response.data).id[0]
         });
-      //  window.location = window.location.href+'qrread?id=_l8v4ewxua';
+        //window.location = window.location.href+'qrread?id=_l8v4ewxua';
         return;
     };
     // url encode form data for sending as post data
@@ -89,12 +55,13 @@ function handleFormSubmit(event) {  // handles form submit withtout any jquery
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
     }).join('&')
     xhr.send(encoded);
-  }
 }
 function loaded() {
-  console.log('contact form submission handler loaded successfully');
   // bind to the submit event of our form
   var form = document.getElementById('gform');
+  navigator.geolocation.getCurrentPosition(function(location) {
+    document.getElementById('farmlocation').value=location.coords.latitude+','+location.coords.longitude;    
+  });
   form.addEventListener("submit", handleFormSubmit, false);
 };
 document.addEventListener('DOMContentLoaded', loaded, false);
